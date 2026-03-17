@@ -18,12 +18,12 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: vehicle_buggy_paint_buggy_clr
-    second: {fileID: 2800000, guid: 29edcfa28c6ece845a97da95dae80817, type: 3}
+    second: {fileID: 2800000, guid: 04ec0a06b97752d48bc3c5f8299ca48a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: wheel_monster_V2_MonsterWheel_Red_AlbedoTransparency
-    second: {fileID: 2800000, guid: 0a1897d3c56fd624ea24f10ab35e1c93, type: 3}
+    second: {fileID: 2800000, guid: d944b552b8cc84d47833181f4a7da701, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -110,7 +110,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.049999997
+    globalScale: 5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
