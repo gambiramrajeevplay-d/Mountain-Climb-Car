@@ -35,8 +35,8 @@ public class FailTrigger : MonoBehaviour
         if (failPanel != null)
             failPanel.SetActive(true);
 
-        // ❌ Disable level
-        if (levelRoot != null)
-            levelRoot.SetActive(false);
+        //// ❌ Disable level
+        //if (levelRoot != null)
+        //    levelRoot.SetActive(false);
     }
 }

@@ -91,13 +91,14 @@ public class FinishLine : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        if (levelRoot != null)
-            levelRoot.SetActive(false);
+        //if (levelRoot != null)
+        //    levelRoot.SetActive(false);
     }
 
     public void ReloadScene()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
+        //SceneManager.GetActiveScene().buildIndex
     }
 }

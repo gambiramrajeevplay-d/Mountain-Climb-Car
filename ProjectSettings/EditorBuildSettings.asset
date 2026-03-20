@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Rajeev.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Level_Selection.unity
+    guid: 47def1297a08e0f41a4b85221e572a91
+  - enabled: 1
+    path: Assets/Scenes/Level_1.unity
+    guid: 034027e5e3f200247ba37efb98484c52
+  - enabled: 1
+    path: Assets/Scenes/Level_2.unity
+    guid: 991deace6d3190743b35f0bb382b08f1
+  - enabled: 1
+    path: Assets/Scenes/Level_3.unity
+    guid: 7cab234d1076ffa45815922ededc9019
+  - enabled: 1
+    path: Assets/Scenes/Level_4.unity
+    guid: ccf66480d87b7654aa1942388867a8b9
+  - enabled: 1
+    path: Assets/Scenes/Level_5.unity
+    guid: 6b375d33831efce48a4a0c28a8c49da9
+  - enabled: 1
+    path: Assets/Scenes/Level_6.unity
+    guid: fddfe7423acfa744ead5b0840eac5e41
   m_configObjects: {}
