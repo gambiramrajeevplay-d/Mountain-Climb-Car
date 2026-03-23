@@ -23,11 +23,11 @@ public class Camera_CutScene : MonoBehaviour
         // 🔍 Find RCC Camera
         rccCamera = FindObjectOfType<RCC_Camera>();
 
-        // 🛑 Disable player control at start
+        // 🛑 Disable player control
         if (playerCar != null)
             playerCar.canControl = false;
 
-        // 🎥 Disable RCC camera at start
+        // 🎥 Disable gameplay camera
         if (rccCamera != null)
             rccCamera.gameObject.SetActive(false);
 
@@ -35,15 +35,19 @@ public class Camera_CutScene : MonoBehaviour
         if (cutsceneCamera != null)
             cutsceneCamera.gameObject.SetActive(true);
 
-        // ▶️ Start cutscene immediately
+        // ⏱ OPTIONAL: Hide timer during cutscene
+        if (TimeManager.instance != null && TimeManager.instance.timeText != null)
+            TimeManager.instance.timeText.gameObject.SetActive(false);
+
+        // ▶️ Start cutscene
         PlayCutscene();
     }
+
     public void PlayCutscene()
     {
         if (isPlaying) return;
 
         isPlaying = true;
-
         StartCoroutine(MoveCamera());
     }
 
@@ -55,14 +59,14 @@ public class Camera_CutScene : MonoBehaviour
 
             while (Vector3.Distance(cutsceneCamera.transform.position, target.position) > 0.05f)
             {
-                // Move position
+                // Move
                 cutsceneCamera.transform.position = Vector3.MoveTowards(
                     cutsceneCamera.transform.position,
                     target.position,
                     speed * Time.deltaTime
                 );
 
-                // Rotate smoothly
+                // Rotate
                 cutsceneCamera.transform.rotation = Quaternion.Lerp(
                     cutsceneCamera.transform.rotation,
                     target.rotation,
@@ -82,17 +86,25 @@ public class Camera_CutScene : MonoBehaviour
     {
         Debug.Log("Cutscene Finished");
 
-        // 🎥 Turn off cutscene camera
+        // 🎥 Disable cutscene camera
         if (cutsceneCamera != null)
             cutsceneCamera.gameObject.SetActive(false);
 
-        // 🎮 Enable RCC camera
+        // 🎮 Enable gameplay camera
         if (rccCamera != null)
             rccCamera.gameObject.SetActive(true);
 
         // 🚗 Enable player control
         if (playerCar != null)
             playerCar.canControl = true;
+
+        // ⏱ SHOW TIMER
+        if (TimeManager.instance != null && TimeManager.instance.timeText != null)
+            TimeManager.instance.timeText.gameObject.SetActive(true);
+
+        // ⏱ START TIMER (IMPORTANT 🔥)
+        if (TimeManager.instance != null)
+            TimeManager.instance.StartTimer();
 
         // Reset
         currentPointIndex = 0;

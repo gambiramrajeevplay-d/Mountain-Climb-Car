@@ -461,11 +461,10 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 		// Creating and initializing all audio sources for this vehicle.
 		CreateAudios();
 
-		// Should we use the damage?
-		if(useDamage)
-			InitDamage();
+        // Should we use the damage?
+        InitDamage(); // Always initialize particles
 
-		CheckBehavior ();
+        CheckBehavior ();
 
 		// Starting the engine.
 		if (runEngineAtAwake || externalController) {
@@ -2146,66 +2145,28 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 		
 	}
 
-	/// <summary>
-	/// Raises the collision enter event.
-	/// </summary>
-	/// <param name="collision">Collision.</param>
-	void OnCollisionEnter (Collision collision){
-		
-		if (collision.contacts.Length < 1 || collision.relativeVelocity.magnitude < minimumCollisionForce)
-			return;
+    /// <summary>
+    /// Raises the collision enter event.
+    /// </summary>
+    /// <param name="collision">Collision.</param>
+    void OnCollisionEnter(Collision collision)
+    {
 
-		if(OnRCCPlayerCollision != null && this == RCC_SceneManager.Instance.activePlayerVehicle)
-			OnRCCPlayerCollision (this, collision);
+        if (collision.contacts.Length < 1 || collision.relativeVelocity.magnitude < minimumCollisionForce)
+            return;
 
-		if(useDamage){
+        // ALWAYS play particles
+        if (((1 << collision.gameObject.layer) & damageFilter) != 0)
+        {
+            CollisionParticles(collision.contacts[0].point);
+        }
 
-			if (((1 << collision.gameObject.layer) & damageFilter) != 0) {
-				
-				CollisionParticles (collision.contacts [0].point);
-			
-				Vector3 colRelVel = collision.relativeVelocity;
-				colRelVel *= 1f - Mathf.Abs (Vector3.Dot (transform.up, collision.contacts [0].normal));
-			
-				float cos = Mathf.Abs (Vector3.Dot (collision.contacts [0].normal, colRelVel.normalized));
+    }
 
-				if (colRelVel.magnitude * cos >= minimumCollisionForce) {
-				
-					repaired = false;
-				
-					localVector = transform.InverseTransformDirection (colRelVel) * (damageMultiplier / 50f);
-
-					if (originalMeshData == null)
-						LoadOriginalMeshData ();
-				
-					for (int i = 0; i < deformableMeshFilters.Length; i++)
-						DeformMesh (deformableMeshFilters [i].mesh, originalMeshData [i].meshVerts, collision, cos, deformableMeshFilters [i].transform, rot);
-				
-				}
-
-			}
-
-		}
-
-		if(crashClips.Length > 0){
-
-			if (collision.contacts[0].thisCollider.gameObject.transform != transform.parent){
-
-				crashSound = RCC_CreateAudioSource.NewAudioSource(gameObject, "Crash Sound AudioSource", 5, 20, RCCSettings.maxCrashSoundVolume, crashClips[UnityEngine.Random.Range(0, crashClips.Length)], false, true, true);
-
-				if(!crashSound.isPlaying)
-					crashSound.Play();
-
-			}
-
-		}
-
-	}
-
-	/// <summary>
-	/// Raises the draw gizmos event.
-	/// </summary>
-	void OnDrawGizmos(){
+    /// <summary>
+    /// Raises the draw gizmos event.
+    /// </summary>
+    void OnDrawGizmos(){
 #if UNITY_EDITOR
 		if(Application.isPlaying){
 
