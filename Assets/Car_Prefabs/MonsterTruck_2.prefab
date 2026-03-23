@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7107411616203339506}
   - component: {fileID: 3640604580576904435}
   m_Layer: 0
-  m_Name: MonsterTruck
+  m_Name: MonsterTruck_2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -43,7 +43,7 @@ public class FinishLine : MonoBehaviour
         {
             car.canControl = false;
 
-            // 🔇 Stop all RCC sounds
+            // Stop all sounds
             AudioSource[] allSounds = car.GetComponentsInChildren<AudioSource>();
             foreach (AudioSource a in allSounds)
             {
@@ -52,13 +52,31 @@ public class FinishLine : MonoBehaviour
             }
         }
 
-        // 🔊 Play finish sound
+        // Play sound
         if (pickupSource != null && finishClip != null)
         {
             pickupSource.PlayOneShot(finishClip);
         }
 
-        // 🎥 Camera
+        // Start sequence
+        StartCoroutine(FinishSequence(0.5f));
+    }
+
+    private void Update()
+    {
+        //if (rccCamera != null && finishPanel != null && finishPanel.activeSelf)
+        //{
+        //    if (rccCamera.cameraMode != RCC_Camera.CameraMode.CINEMATIC)
+        //    {
+        //        rccCamera.ChangeCamera(RCC_Camera.CameraMode.CINEMATIC);
+        //    }
+        //}
+    }
+
+    IEnumerator FinishSequence(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         rccCamera = FindObjectOfType<RCC_Camera>();
 
         if (rccCamera != null)
@@ -67,32 +85,12 @@ public class FinishLine : MonoBehaviour
             rccCamera.ChangeCamera(RCC_Camera.CameraMode.CINEMATIC);
         }
 
-        // ⏳ Start delayed sequence
-        StartCoroutine(FinishSequence(2f));
-    }
-
-    private void Update()
-    {
-        if (rccCamera != null && finishPanel != null && finishPanel.activeSelf)
-        {
-            if (rccCamera.cameraMode != RCC_Camera.CameraMode.CINEMATIC)
-            {
-                rccCamera.ChangeCamera(RCC_Camera.CameraMode.CINEMATIC);
-            }
-        }
-    }
-
-    IEnumerator FinishSequence(float delay)
-    {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(1f); // let camera settle
 
         if (finishPanel != null)
             finishPanel.SetActive(true);
 
         Time.timeScale = 0f;
-
-        //if (levelRoot != null)
-        //    levelRoot.SetActive(false);
     }
 
     public void ReloadScene()
