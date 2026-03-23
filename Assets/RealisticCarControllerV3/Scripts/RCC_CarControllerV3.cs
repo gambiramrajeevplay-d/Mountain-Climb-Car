@@ -2002,7 +2002,7 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 	/// <summary>
 	/// NOS.
 	/// </summary>
-	private void NOS(){
+	public void NOS(){
 
 		if(!useNOS)
 			return;
