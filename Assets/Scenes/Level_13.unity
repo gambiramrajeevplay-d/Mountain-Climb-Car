@@ -499,6 +499,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38382427}
   m_Mesh: {fileID: 878529255619737340, guid: b651346095698dd45b3b2714b9d0f44a, type: 3}
+--- !u!1 &51061921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 51061922}
+  m_Layer: 0
+  m_Name: Fences
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &51061922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51061921}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8267616096357251056}
+  - {fileID: 6666748936067919656}
+  - {fileID: 6853656814997960204}
+  - {fileID: 1684135482119548961}
+  - {fileID: 3694351794044920197}
+  - {fileID: 7969612708431944375}
+  - {fileID: 1810450551}
+  m_Father: {fileID: 7376373336550235523}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &51813697
 GameObject:
   m_ObjectHideFlags: 0
@@ -12606,7 +12644,7 @@ GameObject:
   - component: {fileID: 1810450552}
   m_Layer: 0
   m_Name: Cube.025 (1)
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12619,12 +12657,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810450550}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 2.5055, y: 0.9352906, z: -315.7023}
   m_LocalScale: {x: 100, y: 122.92, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7376373336550235523}
+  m_Father: {fileID: 51061922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1810450552
 MeshCollider:
@@ -23781,7 +23819,7 @@ GameObject:
   - component: {fileID: 8391882639745478982}
   m_Layer: 0
   m_Name: Cube.009
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24271,12 +24309,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5631530521506512682}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.3620448, y: 1.8544439, z: -272.82147}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 2.3620446, y: 1.8544438, z: -272.82147}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7376373336550235523}
+  m_Father: {fileID: 51061922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752989594400102668
 GameObject:
@@ -24369,7 +24407,7 @@ GameObject:
   - component: {fileID: 8534636319081214082}
   m_Layer: 0
   m_Name: Cube.007
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24600,12 +24638,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075726795860056571}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.3620448, y: 1.8544439, z: -14.772308}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 2.3620446, y: 1.8544438, z: -14.772308}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7376373336550235523}
+  m_Father: {fileID: 51061922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3948706961711201695
 MeshRenderer:
@@ -24663,7 +24701,7 @@ GameObject:
   - component: {fileID: 8442278029043307109}
   m_Layer: 0
   m_Name: Cube.039
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25061,7 +25099,7 @@ GameObject:
   - component: {fileID: 8217845059474412493}
   m_Layer: 0
   m_Name: Cube.025
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25361,12 +25399,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164757193921034048}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.3620448, y: 1.8544439, z: -65.46541}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 2.3620446, y: 1.8544438, z: -65.46541}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7376373336550235523}
+  m_Father: {fileID: 51061922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6740866677825157207
 MeshFilter:
@@ -25425,12 +25463,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8531867217102107658}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -2.690719, y: 1.8544439, z: -265.7079}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -2.690719, y: 1.8544438, z: -265.7079}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7376373336550235523}
+  m_Father: {fileID: 51061922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6869816598930524599
 GameObject:
@@ -25487,7 +25525,7 @@ GameObject:
   - component: {fileID: 9052637213277642200}
   m_Layer: 0
   m_Name: Cube.008
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25606,9 +25644,7 @@ Transform:
   - {fileID: 2472673296277031815}
   - {fileID: 6489924722057385753}
   - {fileID: 226853113861228969}
-  - {fileID: 3694351794044920197}
-  - {fileID: 8267616096357251056}
-  - {fileID: 6666748936067919656}
+  - {fileID: 51061922}
   - {fileID: 1507293241066647440}
   - {fileID: 1001135911}
   - {fileID: 4546658321347223471}
@@ -25624,11 +25660,7 @@ Transform:
   - {fileID: 4307632074833334342}
   - {fileID: 4070941863110711491}
   - {fileID: 3123420148540645475}
-  - {fileID: 6853656814997960204}
-  - {fileID: 1684135482119548961}
-  - {fileID: 1810450551}
   - {fileID: 4476375091735484822}
-  - {fileID: 7969612708431944375}
   - {fileID: 1353131093}
   - {fileID: 1849724464}
   - {fileID: 1417365892}
@@ -25793,12 +25825,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3991307331604508588}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -2.690719, y: 1.8544439, z: -14.7723055}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -2.690719, y: 1.8544438, z: -14.772305}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7376373336550235523}
+  m_Father: {fileID: 51061922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8011666167537395274
 MeshRenderer:
@@ -25989,12 +26021,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7079033204599733951}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.3620448, y: 1.8544439, z: -79.91118}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 2.3620446, y: 1.8544438, z: -79.91118}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7376373336550235523}
+  m_Father: {fileID: 51061922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8307163326338231563
 Transform:
@@ -26299,7 +26331,7 @@ GameObject:
   - component: {fileID: 8531867217102107659}
   m_Layer: 0
   m_Name: Cube.024
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
