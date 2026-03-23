@@ -12,9 +12,6 @@ public class TimeManager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public GameObject levelFailPanel;
 
-    [Header("References")]
- //   private PlaneController playerPlane;
-
     private bool isGameOver = false;
 
     [Header("Fail Audio")]
@@ -23,10 +20,12 @@ public class TimeManager : MonoBehaviour
 
     public GameObject levelGameObj;
 
-    private float bonusTimeCollected = 0f; // total picked time
-    private float flightTime = 0f;         // plane alive time
+    private float bonusTimeCollected = 0f;
+    private float flightTime = 0f;
 
     public static TimeManager instance;
+
+    private bool timerRunning = false; // 🔥 IMPORTANT
 
     void Awake()
     {
@@ -37,27 +36,22 @@ public class TimeManager : MonoBehaviour
     {
         currentTime = startTime;
 
-        // Player
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        //if (playerObj != null)
-        //    playerPlane = playerObj.GetComponent<PlaneController>();
-
-        // UI AudioSource (recommended on Canvas)
         if (uiAudioSource == null)
             uiAudioSource = GetComponent<AudioSource>();
+
+        timerRunning = false; // ❗ Timer paused at start (cutscene phase)
 
         UpdateUI();
     }
 
-
     void Update()
     {
-        if (isGameOver)
+        // ❗ Stop everything if game over OR timer not started
+        if (isGameOver || !timerRunning)
             return;
 
         currentTime -= Time.deltaTime;
 
-        // ✈ Track how long the plane exists
         flightTime += Time.deltaTime;
 
         if (currentTime <= 0f)
@@ -69,63 +63,45 @@ public class TimeManager : MonoBehaviour
         UpdateUI();
     }
 
-
     void UpdateUI()
     {
         if (timeText != null)
         {
-            int totalSeconds = Mathf.CeilToInt(currentTime);
-            int minutes = totalSeconds / 60;
-            int seconds = totalSeconds % 60;
+            int minutes = Mathf.FloorToInt(currentTime / 60f);
+            int seconds = Mathf.FloorToInt(currentTime % 60f);
+            int milliseconds = Mathf.FloorToInt((currentTime * 100f) % 100f);
 
-            timeText.text = "Time Left : " + minutes.ToString("00") + ":" + seconds.ToString("00");
+            timeText.text = $"{minutes:00}:{seconds:00}:{milliseconds:00}";
         }
     }
+
+    // 🔥 CALL THIS FROM CUTSCENE
+    public void StartTimer()
+    {
+        timerRunning = true;
+    }
+
     public void GameOverFromCrash()
     {
         if (isGameOver) return;
 
         isGameOver = true;
-
         StartCoroutine(GameOverDelayRoutine());
     }
 
     IEnumerator GameOverDelayRoutine()
     {
-
-
-        // Stop player control immediately
-        //if (playerPlane != null)
-        //{
-        //    playerPlane.canControl = false;
-
-        //    Rigidbody rb = playerPlane.GetComponent<Rigidbody>();
-        //    if (rb != null)
-        //    {
-        //        rb.velocity = Vector3.zero;
-        //        rb.angularVelocity = Vector3.zero;
-        //    }
-        //}
-
-        // 🔊 Play fail sound
         if (uiAudioSource != null && failClip != null)
         {
             uiAudioSource.PlayOneShot(failClip);
         }
 
-        // ⏳ Wait before showing fail
         yield return new WaitForSeconds(3f);
 
-        // ❌ Turn OFF level gameplay
         if (levelGameObj != null)
             levelGameObj.SetActive(false);
 
-        // ✅ Show fail UI
-        //if (levelFailPanel != null)
-        //    levelFailPanel.SetActive(true);
-
         GameManager.Instance.ShowLevelFail();
-
     }
 
     public float GetBonusTimeCollected()
@@ -138,34 +114,15 @@ public class TimeManager : MonoBehaviour
         return flightTime;
     }
 
-
     void GameOver()
     {
         if (isGameOver) return;
 
         isGameOver = true;
 
-        //if (playerPlane != null)
-        //{
-        //    playerPlane.canControl = false;
-
-        //    Rigidbody rb = playerPlane.GetComponent<Rigidbody>();
-        //    if (rb != null)
-        //    {
-        //        rb.velocity = Vector3.zero;
-        //        rb.angularVelocity = Vector3.zero;
-        //    }
-        //}
-
-
-
-        // ✅ Show fail using GameManager
         GameManager.Instance.ShowLevelFail();
     }
 
-
-
-    // 🔥 Called when collecting time bonus
     public void AddTime(float seconds)
     {
         currentTime += seconds;
