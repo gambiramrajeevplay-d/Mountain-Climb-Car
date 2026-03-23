@@ -9,6 +9,8 @@ TagManager:
   - Fill_Health
   - Fence
   - Rotate
+  - CoinText
+  - Time
   layers:
   - Default
   - TransparentFX

@@ -30,6 +30,19 @@ public class TimeManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        if (timeText == null)
+        {
+            GameObject timeObj = GameObject.FindGameObjectWithTag("Time");
+            if (timeObj != null)
+            {
+                timeText = timeObj.GetComponent<TextMeshProUGUI>();
+            }
+            else
+            {
+                Debug.LogError("Time Text with tag 'Time' NOT FOUND!");
+            }
+        }
     }
 
     void Start()

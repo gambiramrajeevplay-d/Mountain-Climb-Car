@@ -19,11 +19,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: vehicle_buggy_paint_buggy_clr
     second: {fileID: 2800000, guid: 04ec0a06b97752d48bc3c5f8299ca48a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: wheel_monster_V2_MonsterWheel_Red_AlbedoTransparency
-    second: {fileID: 2800000, guid: d944b552b8cc84d47833181f4a7da701, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

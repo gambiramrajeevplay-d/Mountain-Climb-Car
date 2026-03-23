@@ -1,30 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CoinPickUp : MonoBehaviour
 {
     [SerializeField] private int coinValue = 1;
 
-    // 🔥 Multiple particles
     [SerializeField] private List<ParticleSystem> pickupEffects;
-
-    // 🔊 Audio
     [SerializeField] private AudioClip pickupClip;
 
     private AudioSource pickupSound;
 
+    private TextMeshProUGUI coinText;
+
+    // ✅ SHARED across all coins
+    private static int tempCoinCount = 0;
+    private static Coroutine textCoroutine;
+
     private void Awake()
     {
         GameObject audioObj = GameObject.FindGameObjectWithTag("PickUp");
-
         if (audioObj != null)
         {
             pickupSound = audioObj.GetComponent<AudioSource>();
         }
-        else
+
+        GameObject textObj = GameObject.FindGameObjectWithTag("CoinText");
+        if (textObj != null)
         {
-            Debug.LogWarning("[CoinPickUp] No GameObject found with tag 'PickUp'");
+            coinText = textObj.GetComponent<TextMeshProUGUI>();
         }
     }
 
@@ -32,15 +37,23 @@ public class CoinPickUp : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        // 🪙 Add coins
         if (LevelCoinManager.instance != null)
             LevelCoinManager.instance.AddCoin(coinValue);
 
-        // 🔊 Play pickup audio clip
+        if (coinText != null)
+        {
+            tempCoinCount += coinValue; // ✅ now accumulates globally
+            coinText.text = tempCoinCount.ToString();
+
+            if (textCoroutine != null)
+                StopCoroutine(textCoroutine);
+
+            textCoroutine = StartCoroutine(ShowCoinText());
+        }
+
         if (pickupSound != null && pickupClip != null)
             pickupSound.PlayOneShot(pickupClip);
 
-        // ✨ Play ALL particles
         foreach (ParticleSystem effect in pickupEffects)
         {
             if (effect != null)
@@ -52,5 +65,16 @@ public class CoinPickUp : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    IEnumerator ShowCoinText()
+    {
+        coinText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        coinText.gameObject.SetActive(false);
+
+        tempCoinCount = 0; // reset after delay
     }
 }

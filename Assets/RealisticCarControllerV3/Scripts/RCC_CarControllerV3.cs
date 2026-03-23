@@ -950,7 +950,7 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 
 		}
 
-		LoadOriginalMeshData();
+		//LoadOriginalMeshData();
 
 		// Particle System used for collision effects. Creating it at start. We will use this when we collide something.
 		if(contactSparkle){
@@ -1045,14 +1045,14 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 	/// <summary>
 	/// Default mesh vertices positions. Used for repairing the vehicle body.
 	/// </summary>
-	private void LoadOriginalMeshData(){
+	//private void LoadOriginalMeshData(){
 
-		originalMeshData = new originalMeshVerts[deformableMeshFilters.Length];
+	//	originalMeshData = new originalMeshVerts[deformableMeshFilters.Length];
 
-		for (int i = 0; i < deformableMeshFilters.Length; i++)
-			originalMeshData[i].meshVerts = deformableMeshFilters[i].mesh.vertices;
+	//	for (int i = 0; i < deformableMeshFilters.Length; i++)
+	//		originalMeshData[i].meshVerts = deformableMeshFilters[i].mesh.vertices;
 
-	}
+	//}
 
 	/// <summary>
 	/// Moving deformed vertices to their original positions while repairing.
@@ -1069,7 +1069,7 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 				Vector3[] vertices = deformableMeshFilters[k].mesh.vertices;
 
 				if(originalMeshData == null)
-					LoadOriginalMeshData();
+				//	LoadOriginalMeshData();
 
 				for (int i = 0; i < vertices.Length; i++){
 
