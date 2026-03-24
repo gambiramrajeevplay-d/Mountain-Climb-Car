@@ -11,6 +11,7 @@ TagManager:
   - Rotate
   - CoinText
   - Time
+  - Booster
   layers:
   - Default
   - TransparentFX
