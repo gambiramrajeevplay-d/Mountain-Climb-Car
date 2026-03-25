@@ -8,7 +8,7 @@ public class FinishLine : MonoBehaviour
     {
         if (!other.CompareTag("Player") && other.GetComponent<RCC_CarControllerV3>() == null)
             return;
-
+       
         RCC_CarControllerV3 car = other.GetComponent<RCC_CarControllerV3>();
         if (car == null)
             car = other.GetComponentInParent<RCC_CarControllerV3>();
@@ -16,7 +16,7 @@ public class FinishLine : MonoBehaviour
         if (car != null)
         {
             car.canControl = false;
-
+            TimeManager.instance.timerRunning = false;
             // 🔇 Stop all car sounds
             AudioSource[] allSounds = car.GetComponentsInChildren<AudioSource>();
             foreach (AudioSource a in allSounds)

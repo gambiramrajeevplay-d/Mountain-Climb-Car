@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     [Header("Level Root (Disable on End)")]
     public GameObject levelRoot;
 
+
+    private CoinCollector coinCollector;
+
     [Header("Delays")]
     public float levelPassDelay = 1.5f; // 🟢 PASS DELAY
     public float levelFailDelay = 1.5f; // 🔴 FAIL DELAY
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        coinCollector = FindObjectOfType<CoinCollector>();
         Pauser.UnlockPause();
         Time.timeScale = 1f;
 
@@ -68,15 +72,18 @@ public class GameManager : MonoBehaviour
         if (levelPassSound != null)
             audioSource.PlayOneShot(levelPassSound);
 
-        int totalCoins = AddCollectedCoins();
+        int collectedCoins = 0;
 
-        if (CurrencyManager.instance != null)
-        {
-            CurrencyManager.instance.AddCurrency(100);
-            totalCoins += 100;
-        }
+        if (coinCollector != null)
+            collectedCoins = coinCollector.GetLevelCoins();
 
-        UpdatePassUI(totalCoins);
+        int totalReward = collectedCoins + 100;
+
+        // 💰 Add collected + bonus
+        CurrecnyManager.instance.AddCurrency(totalReward);
+
+        // 🧾 Show collected + 100
+        UpdatePassUI(totalReward);
 
         if (levelPassPanel != null)
             levelPassPanel.SetActive(true);
@@ -85,7 +92,6 @@ public class GameManager : MonoBehaviour
             levelRoot.SetActive(false);
 
         Pauser.LockPause();
-        Pauser.instance.Pause();
     }
 
     // =========================
@@ -106,9 +112,16 @@ public class GameManager : MonoBehaviour
         if (levelFailSound != null)
             audioSource.PlayOneShot(levelFailSound);
 
-        int totalCoins = AddCollectedCoins();
+        int collectedCoins = 0;
 
-        UpdateFailUI(totalCoins);
+        if (coinCollector != null)
+            collectedCoins = coinCollector.GetLevelCoins();
+
+        // 💰 Add only collected coins to total currency
+        CurrecnyManager.instance.AddCurrency(collectedCoins);
+
+        // 🧾 Show ONLY collected coins
+        UpdateFailUI(collectedCoins);
 
         if (levelFailPanel != null)
             levelFailPanel.SetActive(true);
@@ -118,23 +131,6 @@ public class GameManager : MonoBehaviour
 
         Pauser.LockPause();
         Pauser.instance.Pause();
-    }
-
-    // =========================
-    // COINS
-    // =========================
-    private int AddCollectedCoins()
-    {
-        int totalCoins = 0;
-
-        if (CurrencyManager.instance != null && LevelCoinManager.instance != null)
-        {
-            int collectedCoins = LevelCoinManager.instance.GetCollectedCoins();
-            CurrencyManager.instance.AddCurrency(collectedCoins);
-            totalCoins = CurrencyManager.instance.GetCurrency();
-        }
-
-        return totalCoins;
     }
 
     // =========================

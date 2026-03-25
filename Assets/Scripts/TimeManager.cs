@@ -12,7 +12,7 @@ public class TimeManager : MonoBehaviour
     public TextMeshProUGUI timeText;
 
     private bool isGameOver = false;
-    private bool timerRunning = false;
+    public bool timerRunning = false;
 
     public static TimeManager instance;
 

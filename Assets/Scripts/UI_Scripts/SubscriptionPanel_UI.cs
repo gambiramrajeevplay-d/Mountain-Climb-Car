@@ -42,26 +42,19 @@ public class SubscriptionPanel_UI : MonoBehaviour
     {
         gameObject.SetActive(false);
 
-        bool firstTime = SaveScript.canShowSubScriptionPanel;
-
         // Mark as shown
         SaveScript.canShowSubScriptionPanel = false;
 
         if (SaveScript.cameFromGameplay)
         {
+            // Coming from gameplay → go to car selection
             carSelectionMenu.SetActive(true);
             SaveScript.cameFromGameplay = false;
         }
         else
         {
-            if (firstTime)
-            {
-                mainMenu.SetActive(true);      // first time
-            }
-            else
-            {
-                carSelectionMenu.SetActive(true); // second time
-            }
+            // Coming from main menu → always go back to main menu
+            mainMenu.SetActive(true);
         }
 
         if (!mainMenuAudioPlayer.isPlaying)
