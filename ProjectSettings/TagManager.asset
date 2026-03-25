@@ -11,6 +11,10 @@ TagManager:
   - Rotate
   - CoinText
   - Time
+  - Coin
+  - Sounds
+  - Giveborder
+  - border
   layers:
   - Default
   - TransparentFX

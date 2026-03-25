@@ -15,7 +15,7 @@ public class TimeCollectable : MonoBehaviour
         timeManager = FindObjectOfType<TimeManager>();
 
         // Find AudioSource with tag "PickUp"
-        GameObject audioObj = GameObject.FindGameObjectWithTag("PickUp");
+        GameObject audioObj = GameObject.FindGameObjectWithTag("Sounds");
         if (audioObj != null)
         {
             pickupSource = audioObj.GetComponent<AudioSource>();

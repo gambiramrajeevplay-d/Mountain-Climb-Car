@@ -2,11 +2,6 @@
 
 public class FailTrigger : MonoBehaviour
 {
-    [Header("UI")]
-    public GameObject failPanel;
-
-    public GameObject levelRoot;
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player") && other.GetComponent<RCC_CarControllerV3>() == null)
@@ -31,12 +26,10 @@ public class FailTrigger : MonoBehaviour
             }
         }
 
-        // 📱 Show fail panel
-        if (failPanel != null)
-            failPanel.SetActive(true);
-
-        //// ❌ Disable level
-        //if (levelRoot != null)
-        //    levelRoot.SetActive(false);
+        // ✅ CALL GAME MANAGER ONLY
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ShowLevelFail();
+        }
     }
 }

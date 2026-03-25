@@ -68,6 +68,19 @@ public class PlayerHealth : MonoBehaviour
             healthFillImage.fillAmount = currentHealth / maxHealth;
         }
     }
+    void Die()
+    {
+        Debug.Log("Player Died");
+
+        RCC_CarControllerV3 car = GetComponent<RCC_CarControllerV3>();
+        if (car != null)
+        {
+            car.canControl = false;
+        }
+
+        StartCoroutine(DelayFail());
+    }
+
     IEnumerator DelayFail()
     {
         yield return new WaitForSeconds(1f);
@@ -76,20 +89,5 @@ public class PlayerHealth : MonoBehaviour
         {
             GameManager.Instance.ShowLevelFail();
         }
-    }
-    // ☠️ Player death
-    void Die()
-    {
-        Debug.Log("Player Died");
-
-        // 🛑 Stop player movement immediately
-        RCC_CarControllerV3 car = GetComponent<RCC_CarControllerV3>();
-        if (car != null)
-        {
-            car.canControl = false;
-        }
-
-        // ⏳ Delay fail screen
-        StartCoroutine(DelayFail());
     }
 }

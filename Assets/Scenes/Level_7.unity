@@ -701,9 +701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb0bbd86d3ca2c4fad822336a1e47c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishPanel: {fileID: 2145864552}
-  levelRoot: {fileID: 301026689}
-  finishClip: {fileID: 8300000, guid: 2b10b5e9c20695340a8a886386027b3f, type: 3}
 --- !u!65 &136287194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1986,8 +1983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b93f59498f8a841811e0b7b5f6588d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  failPanel: {fileID: 2145864552}
-  levelRoot: {fileID: 301026689}
 --- !u!1 &678270852
 GameObject:
   m_ObjectHideFlags: 0
@@ -23214,13 +23209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2459513671574266350}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.71701914, y: 0.0076709087, z: 0.007891611, w: -0.69696665}
-  m_LocalPosition: {x: 3.84, y: -12.56, z: -91.69}
+  m_LocalRotation: {x: 0.72512954, y: 0.009285016, z: 0.006793712, w: -0.68851644}
+  m_LocalPosition: {x: 3.6, y: -13.47, z: -90.29}
   m_LocalScale: {x: 149.02652, y: 99.999985, z: 7.194448}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4045849891498259375}
-  m_LocalEulerAnglesHint: {x: -91.625, y: -1.2609863, z: 0}
+  m_LocalEulerAnglesHint: {x: -92.974, y: 3.2409973, z: -4.5440063}
 --- !u!23 &8567716999432584808
 MeshRenderer:
   m_ObjectHideFlags: 0

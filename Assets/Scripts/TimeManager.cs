@@ -10,27 +10,17 @@ public class TimeManager : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI timeText;
-    public GameObject levelFailPanel;
 
     private bool isGameOver = false;
-
-    [Header("Fail Audio")]
-    public AudioClip failClip;
-    public AudioSource uiAudioSource;
-
-    public GameObject levelGameObj;
-
-    private float bonusTimeCollected = 0f;
-    private float flightTime = 0f;
+    private bool timerRunning = false;
 
     public static TimeManager instance;
-
-    private bool timerRunning = false; // 🔥 IMPORTANT
 
     void Awake()
     {
         instance = this;
 
+        // 🔍 Auto find if not assigned
         if (timeText == null)
         {
             GameObject timeObj = GameObject.FindGameObjectWithTag("Time");
@@ -48,24 +38,17 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         currentTime = startTime;
+        timerRunning = false;
 
-        if (uiAudioSource == null)
-            uiAudioSource = GetComponent<AudioSource>();
-
-        timerRunning = false; // ❗ Timer paused at start (cutscene phase)
-
-        UpdateUI();
+        UpdateUI(); // show initial time
     }
 
     void Update()
     {
-        // ❗ Stop everything if game over OR timer not started
         if (isGameOver || !timerRunning)
             return;
 
         currentTime -= Time.deltaTime;
-
-        flightTime += Time.deltaTime;
 
         if (currentTime <= 0f)
         {
@@ -88,12 +71,13 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    // 🔥 CALL THIS FROM CUTSCENE
+    // 🔥 Call this after cutscene
     public void StartTimer()
     {
         timerRunning = true;
     }
 
+    // 💥 Crash fail
     public void GameOverFromCrash()
     {
         if (isGameOver) return;
@@ -104,27 +88,12 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator GameOverDelayRoutine()
     {
-        if (uiAudioSource != null && failClip != null)
-        {
-            uiAudioSource.PlayOneShot(failClip);
-        }
-
         yield return new WaitForSeconds(3f);
 
-        if (levelGameObj != null)
-            levelGameObj.SetActive(false);
-
-        GameManager.Instance.ShowLevelFail();
-    }
-
-    public float GetBonusTimeCollected()
-    {
-        return bonusTimeCollected;
-    }
-
-    public float GetFlightTime()
-    {
-        return flightTime;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ShowLevelFail();
+        }
     }
 
     void GameOver()
@@ -133,11 +102,19 @@ public class TimeManager : MonoBehaviour
 
         isGameOver = true;
 
-        GameManager.Instance.ShowLevelFail();
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ShowLevelFail();
+        }
     }
 
     public void AddTime(float seconds)
     {
         currentTime += seconds;
+    }
+
+    public float GetCurrentTime()
+    {
+        return currentTime;
     }
 }

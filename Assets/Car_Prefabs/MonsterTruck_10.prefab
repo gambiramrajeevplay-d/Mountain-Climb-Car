@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 2260707491459746691}
   - component: {fileID: 5452463583170184929}
   - component: {fileID: 8289690861686809050}
+  - component: {fileID: 4977151980328831129}
   m_Layer: 0
   m_Name: MonsterTruck_10
   m_TagString: Player
@@ -1229,6 +1230,19 @@ MonoBehaviour:
   carBoostEffect3: {fileID: 0}
   boostCollectedSound: {fileID: 0}
   jumpForce: 12000
+--- !u!114 &4977151980328831129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2645582929469032713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6f6697f8b1e784ea78b248a9e1ae88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinClip: {fileID: 8300000, guid: 7abbae15299f764468226b6f7090b467, type: 3}
 --- !u!1 &3457736613480260664
 GameObject:
   m_ObjectHideFlags: 0

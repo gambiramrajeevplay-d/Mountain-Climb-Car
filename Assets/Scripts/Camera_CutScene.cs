@@ -36,8 +36,7 @@ public class Camera_CutScene : MonoBehaviour
             cutsceneCamera.gameObject.SetActive(true);
 
         // ⏱ OPTIONAL: Hide timer during cutscene
-        if (TimeManager.instance != null && TimeManager.instance.timeText != null)
-            TimeManager.instance.timeText.gameObject.SetActive(false);
+        
 
         // ▶️ Start cutscene
         PlayCutscene();
@@ -99,9 +98,7 @@ public class Camera_CutScene : MonoBehaviour
             playerCar.canControl = true;
 
         // ⏱ SHOW TIMER
-        if (TimeManager.instance != null && TimeManager.instance.timeText != null)
-            TimeManager.instance.timeText.gameObject.SetActive(true);
-
+        
         // ⏱ START TIMER (IMPORTANT 🔥)
         if (TimeManager.instance != null)
             TimeManager.instance.StartTimer();
