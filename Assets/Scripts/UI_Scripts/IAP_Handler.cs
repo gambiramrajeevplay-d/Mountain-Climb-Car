@@ -102,31 +102,42 @@ public class IAP_Handler : MonoBehaviour
         }
     }
 
-    public void Buy4Characters()
+    public void BuyFourCars()
     {
-        if (currencyManager != null)
+        if (CurrecnyManager.instance == null) return;
+
+        int unlocked = 0;
+
+        for (int i = 1; i < 9 && unlocked < 4; i++)
         {
-            for (int i = 4; i <= 7; i++)
+            if (!CurrecnyManager.instance.IsCarUnlocked(i))
             {
-                currencyManager.UnlockCharacter(i);
+                CurrecnyManager.instance.UnlockCar(i);
+                unlocked++;
             }
         }
-    }
 
+        Debug.Log("Unlocked 4 cars via IAP");
+    }
     public void BuyCharacter(int _characterIndex)
     {
-        currencyManager.UnlockCharacter(_characterIndex);
-    }
+        PlayerPrefs.SetInt("car" + _characterIndex, 1);
+        PlayerPrefs.Save();
 
+        Debug.Log("Car " + _characterIndex + " unlocked");
+    }
     public void UnlockFourCarsDummy()
     {
-        //  int unlocked = 0;
-        for (int i = 1; i < 5; i++)
+        if (CurrecnyManager.instance == null) return;
+
+        int unlocked = 0;
+
+        for (int i = 1; i < 9 && unlocked < 4; i++)
         {
-            if (PlayerPrefs.GetInt("car" + i, 0) == 0)
+            if (!CurrecnyManager.instance.IsCarUnlocked(i))
             {
-                PlayerPrefs.SetInt("car" + i, 1);
-                //unlocked++;
+                CurrecnyManager.instance.UnlockCar(i);
+                unlocked++;
             }
         }
         PlayerPrefs.Save();

@@ -75,14 +75,14 @@ public class CurrecnyManager : MonoBehaviour
 
     // ---------------- UNLOCKS ----------------
 
-    public void UnlockCharacter(int characterIndex)
+    public void UnlockCar(int index)
     {
-        PlayerPrefs.SetInt("CharUnlocked_" + characterIndex, 1);
+        PlayerPrefs.SetInt("car" + index, 1);
         PlayerPrefs.Save();
     }
 
-    public bool IsCharacterUnlocked(int characterIndex)
+    public bool IsCarUnlocked(int index)
     {
-        return PlayerPrefs.GetInt("CharUnlocked_" + characterIndex, 0) == 1;
+        return PlayerPrefs.GetInt("car" + index, 0) == 1;
     }
 }

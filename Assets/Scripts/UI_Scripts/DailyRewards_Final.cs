@@ -134,7 +134,7 @@ public class DailyRewards_Final : MonoBehaviour
         }
         else if (dayValue >= 7) 
         {
-            CurrecnyManager.instance.UnlockCharacter(3);
+            CurrecnyManager.instance.UnlockCar(2);
 
             ShowRewardPopup();
         }
