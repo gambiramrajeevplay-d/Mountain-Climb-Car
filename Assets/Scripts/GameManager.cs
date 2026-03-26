@@ -23,9 +23,7 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    [Header("Level Root (Disable on End)")]
-    public GameObject levelRoot;
-
+    public GameObject levelObject;
 
     private CoinCollector coinCollector;
 
@@ -69,6 +67,9 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(levelPassDelay);
 
+       
+
+        // 🔊 Play sound
         if (levelPassSound != null)
             audioSource.PlayOneShot(levelPassSound);
 
@@ -82,18 +83,29 @@ public class GameManager : MonoBehaviour
         // 💰 Add collected + bonus
         CurrecnyManager.instance.AddCurrency(totalReward);
 
-        // 🧾 Show collected + 100
+        // 🏆 UNLOCK NEXT LEVEL (BASED ON BUILD INDEX)
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int unlockedLevel = PlayerPrefs.GetInt(StringsData.playerLevel, 1);
+
+        if (currentSceneIndex >= unlockedLevel)
+        {
+            PlayerPrefs.SetInt(StringsData.playerLevel, currentSceneIndex + 1);
+            PlayerPrefs.Save();
+        }
+
+        // 🧾 Update UI
         UpdatePassUI(totalReward);
 
+        // 🟢 Show panel
         if (levelPassPanel != null)
             levelPassPanel.SetActive(true);
 
-        if (levelRoot != null)
-            levelRoot.SetActive(false);
+        levelObject.SetActive(false);
 
+
+        // ⏸ Lock pause
         Pauser.LockPause();
     }
-
     // =========================
     // LEVEL FAIL
     // =========================
@@ -108,6 +120,8 @@ public class GameManager : MonoBehaviour
     IEnumerator LevelFailRoutine()
     {
         yield return new WaitForSeconds(levelFailDelay);
+
+        
 
         if (levelFailSound != null)
             audioSource.PlayOneShot(levelFailSound);
@@ -126,11 +140,10 @@ public class GameManager : MonoBehaviour
         if (levelFailPanel != null)
             levelFailPanel.SetActive(true);
 
-        if (levelRoot != null)
-            levelRoot.SetActive(false);
+        levelObject.SetActive(false);
 
         Pauser.LockPause();
-        Pauser.instance.Pause();
+     //  Pauser.instance.Pause();
     }
 
     // =========================
@@ -154,6 +167,11 @@ public class GameManager : MonoBehaviour
     public void Home()
     {
         Time.timeScale = 1f;
+
+        // 🔥 IMPORTANT: Tell MainMenu we came from gameplay
+        PlayerPrefs.SetInt("ShowSubscriptionPanel", 1);
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("UI");
     }
 }

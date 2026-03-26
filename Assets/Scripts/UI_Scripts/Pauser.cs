@@ -116,7 +116,7 @@ public class Pauser : MonoBehaviour
         if (instance != null)
         {
             instance.PausePannel.SetActive(false);
-            instance.LevelObject.SetActive(true);
+          
         }
     }
 

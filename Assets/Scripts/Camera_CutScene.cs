@@ -17,6 +17,9 @@ public class Camera_CutScene : MonoBehaviour
 
     void Start()
     {
+        // 🔒 Disable pause during cutscene
+        Pauser.LockPause();
+
         // 🔍 Find player
         playerCar = FindObjectOfType<RCC_CarControllerV3>();
 
@@ -35,13 +38,8 @@ public class Camera_CutScene : MonoBehaviour
         if (cutsceneCamera != null)
             cutsceneCamera.gameObject.SetActive(true);
 
-        // ⏱ OPTIONAL: Hide timer during cutscene
-        
-
-        // ▶️ Start cutscene
         PlayCutscene();
     }
-
     public void PlayCutscene()
     {
         if (isPlaying) return;
@@ -97,11 +95,12 @@ public class Camera_CutScene : MonoBehaviour
         if (playerCar != null)
             playerCar.canControl = true;
 
-        // ⏱ SHOW TIMER
-        
-        // ⏱ START TIMER (IMPORTANT 🔥)
+        // ⏱ START TIMER
         if (TimeManager.instance != null)
             TimeManager.instance.StartTimer();
+
+        // 🔓 Enable pause again
+        Pauser.UnlockPause();
 
         // Reset
         currentPointIndex = 0;
