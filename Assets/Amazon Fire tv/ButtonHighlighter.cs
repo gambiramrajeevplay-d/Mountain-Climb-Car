@@ -35,7 +35,10 @@ public class ButtonHighlighter : MonoBehaviour
 
         }
     }
-
+    public void defaultHighlighter(GameObject defaultBtn)
+    {
+        EventSystem.current.SetSelectedGameObject(defaultBtn);
+    }
     void Update()
     {
         var selectedObj = EventSystem.current.currentSelectedGameObject;

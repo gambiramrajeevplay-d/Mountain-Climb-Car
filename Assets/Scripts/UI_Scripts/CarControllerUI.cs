@@ -226,11 +226,6 @@ public class CarControllerUI : MonoBehaviour
 
     public void OnDummyContinueClicked()
     {
-        if (unlockAllNext)
-            UnlockAllCarsDummy();
-        else
-            UnlockFourCarsDummy();
-
         unlockAllNext = !unlockAllNext;
 
         if (unlockDummyPanel != null)
@@ -239,10 +234,10 @@ public class CarControllerUI : MonoBehaviour
         if (levelselectionPanel != null)
             levelselectionPanel.SetActive(true);
 
-        UpdateButtons();
+       
     }
 
-    void UnlockFourCarsDummy()
+    public void UnlockFourCarsDummy()
     {
         int unlocked = 0;
         for (int i = 1; i < TOTAL_CARS && unlocked < unlockFourCount; i++)
@@ -256,7 +251,7 @@ public class CarControllerUI : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    void UnlockAllCarsDummy()
+    public  void UnlockAllCarsDummy()
     {
         for (int i = 1; i < TOTAL_CARS; i++)
             PlayerPrefs.SetInt("car" + i, 1);
@@ -331,6 +326,7 @@ public class CarControllerUI : MonoBehaviour
 
         if (showUnlockAll && unlockAllPanel != null)
             unlockAllPanel.SetActive(true);
+
         else if (unlockDummyPanel != null)
             unlockDummyPanel.SetActive(true);
 

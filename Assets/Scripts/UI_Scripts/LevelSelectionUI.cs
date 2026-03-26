@@ -88,23 +88,23 @@ public class LevelSelectionUI : MonoBehaviour
             forceUnlockAllLevels ||
             PlayerPrefs.GetInt(StringsData.unlockedAllLevels, 0) == 1;
 
-        Button highestButton = null;
-
         // 1️⃣ LOCK / UNLOCK LEVELS
         for (int i = 0; i < levels.Length; i++)
         {
             if (levels[i] == null)
                 continue;
 
-            // 🚨 RULE: LEVEL 1 (INDEX 0) IS ALWAYS FREE
+            // 🚨 LEVEL 1 ALWAYS FREE
             bool shouldUnlock = (i == 0) || fullGameUnlocked || (i < playerLevel);
 
+            // Apply unlock logic
             levels[i].SetUnlocked(shouldUnlock);
 
-            // ✅ ALWAYS STORE LAST UNLOCKED BUTTON
-            if (shouldUnlock)
+            // 🔥 FORCE FIX (prevents prefab or paid logic issues)
+            Button btn = levels[i].GetComponent<Button>();
+            if (btn != null)
             {
-                highestButton = levels[i].GetComponent<Button>();
+                btn.interactable = shouldUnlock;
             }
         }
 
@@ -116,16 +116,32 @@ public class LevelSelectionUI : MonoBehaviour
                 firstButton.interactable = true;
         }
 
-        // 3️⃣ HIGHLIGHT HIGHEST (LAST) UNLOCKED LEVEL
-        if (highestButton != null && buttonHighlighter != null && EventSystem.current != null)
-        {
-            highestButton.interactable = true;
+        // 3️⃣ HIGHLIGHT CURRENT PLAYABLE LEVEL (CORRECT FIX)
+        int highlightIndex = Mathf.Clamp(playerLevel - 1, 0, levels.Length - 1);
 
-            buttonHighlighter.defaultButton = highestButton.gameObject;
+        Button targetButton = null;
+
+        // 🔍 Find nearest valid interactable button (fallback safety)
+        for (int i = highlightIndex; i >= 0; i--)
+        {
+            if (levels[i] == null) continue;
+
+            Button btn = levels[i].GetComponent<Button>();
+            if (btn != null && btn.interactable)
+            {
+                targetButton = btn;
+                break;
+            }
+        }
+
+        // 🎯 Apply highlight
+        if (targetButton != null && buttonHighlighter != null && EventSystem.current != null)
+        {
+            buttonHighlighter.defaultButton = targetButton.gameObject;
             buttonHighlighter.enabled = true;
 
-            EventSystem.current.SetSelectedGameObject(highestButton.gameObject);
-            buttonHighlighter.HighlightButton(highestButton);
+            EventSystem.current.SetSelectedGameObject(targetButton.gameObject);
+            buttonHighlighter.HighlightButton(targetButton);
         }
     }
 

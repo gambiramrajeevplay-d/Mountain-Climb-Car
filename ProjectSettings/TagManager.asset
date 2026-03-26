@@ -12,6 +12,11 @@ TagManager:
   - CoinText
   - Time
   - Booster
+  - Giveborder
+  - border
+  - Sounds
+  - Coin
+  - Music
   layers:
   - Default
   - TransparentFX

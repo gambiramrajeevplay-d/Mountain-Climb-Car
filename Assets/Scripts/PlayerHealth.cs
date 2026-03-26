@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fence"))
         {
-            TakeDamage(10f);
+            TakeDamage(5f);
             Debug.Log("Collided with Fence - Damage Applied");
         }
     }

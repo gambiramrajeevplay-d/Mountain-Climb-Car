@@ -34,7 +34,7 @@ public class ControlsManager : MonoBehaviour
         PlayerPrefs.Save();
 
         //  Auto hide after 4 seconds (optional)
-        Invoke(nameof(HideControls), 2f);
+        Invoke(nameof(HideControls), 10f);
     }
 
     private void HideControls()

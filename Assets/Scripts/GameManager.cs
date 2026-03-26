@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(levelPassDelay);
 
-       
+        DisableMusic();
 
         // 🔊 Play sound
         if (levelPassSound != null)
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(levelFailDelay);
 
-        
+        DisableMusic();
 
         if (levelFailSound != null)
             audioSource.PlayOneShot(levelFailSound);
@@ -173,5 +173,14 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         SceneManager.LoadScene("UI");
+    }
+    void DisableMusic()
+    {
+        GameObject musicObj = GameObject.FindGameObjectWithTag("Music");
+
+        if (musicObj != null)
+        {
+            musicObj.SetActive(false); // 🔇 Completely disable
+        }
     }
 }
