@@ -220,7 +220,7 @@ public class RCC_MobileButtons : MonoBehaviour
         if (RCCSettings.controllerType != RCC_Settings.ControllerType.Mobile)
             return;
 
-        Debug.Log("Gas: " + gasInput);
+     //   Debug.Log("Gas: " + gasInput);
 
         switch (RCCSettings.mobileController)
         {
