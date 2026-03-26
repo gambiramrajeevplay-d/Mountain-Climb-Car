@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-
+        UpdateSoundIcon();
         // Buttons
         startButton.onClick.AddListener(OnStartButtonPressed);
         storeButton.onClick.AddListener(OpenStoreMenu);
@@ -190,18 +190,14 @@ public class MainMenu : MonoBehaviour
 
     public void Sound_on()
     {
-        if (sound_.sprite == sound_on)
-        {
-            sound_.sprite = sound_off;
-            AudioListener.pause = true;
-        }
-        else
-        {
-            sound_.sprite = sound_on;
-            AudioListener.pause = false;
-        }
+        AudioManagerPause.IsMuted = !AudioManagerPause.IsMuted;
+        UpdateSoundIcon();
     }
-
+    void UpdateSoundIcon()
+    {
+        if (sound_ != null)
+            sound_.sprite = AudioManagerPause.IsMuted ? sound_off : sound_on;
+    }
     void DisableAllMenus()
     {
         mainMenu.SetActive(false);

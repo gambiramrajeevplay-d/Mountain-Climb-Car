@@ -62,16 +62,7 @@ public class CoinCollector : MonoBehaviour
                 pickupSource.PlayOneShot(coinClip);
             }
 
-            // 💰 Add to global currency
-            if (CurrecnyManager.instance != null)
-            {
-                CurrecnyManager.instance.AddCurrency(1);
-            }
-            else
-            {
-                Debug.LogError("❌ CurrencyManager missing in scene!");
-                return;
-            }
+          
 
             // 💰 Add to LEVEL coins (for UI only)
             levelCoins++;

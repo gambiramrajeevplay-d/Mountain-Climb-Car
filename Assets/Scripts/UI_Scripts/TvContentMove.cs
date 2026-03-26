@@ -12,7 +12,7 @@ public class TvContentMove : MonoBehaviour
         if (!AndroidTV.IsAndroidOrFireTv())
         {
             contentmover.anchoredPosition = new Vector2(myval, 0);
-            GetComponent<TvContentMove>().enabled = false;
+           GetComponent<TvContentMove>().enabled = false;
         }
        
             //contentmover.anchoredPosition = new Vector2(myval, 0);
