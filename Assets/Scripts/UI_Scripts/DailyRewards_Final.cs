@@ -170,7 +170,7 @@ public class DailyRewards_Final : MonoBehaviour
     }
     void ShowRewardPopup(int coins)
     {
-        rewardPopupText.text = $" Recived {coins} coins...";
+        rewardPopupText.text = $" Received {coins} coins...";
         //rewardImage.sprite = dailySprites[dayValue];  // Change the sprite based on the current day
         rewardPopupPanel.SetActive(true);
         foreach (Button b in rewardButtons)

@@ -12,11 +12,11 @@ public class BackButtonHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           
-            
-                    exitPopup.SetActive(true); // Show popup
-              
-           
+
+
+            exitPopup.SetActive(true); // Show popup
+
+
         }
     }
 

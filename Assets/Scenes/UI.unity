@@ -7680,7 +7680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 389975086}
-  loadingTime: 3
+  loadingTime: 1
 --- !u!1 &396752867
 GameObject:
   m_ObjectHideFlags: 0
@@ -8730,7 +8730,7 @@ GameObject:
   - component: {fileID: 463477457}
   - component: {fileID: 463477456}
   m_Layer: 5
-  m_Name: exit
+  m_Name: exit_Sub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21285,7 +21285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 964822587}
-  loadingTime: 3
+  loadingTime: 1
 --- !u!1 &971708669
 GameObject:
   m_ObjectHideFlags: 0
@@ -22714,7 +22714,7 @@ GameObject:
   - component: {fileID: 1068173351}
   - component: {fileID: 1068173350}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Quit_PopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24141,6 +24141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e20f5849f0d5cd459797dff04902f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitPopup: {fileID: 463477454}
 --- !u!1 &1121701560
 GameObject:
   m_ObjectHideFlags: 0
@@ -29417,6 +29418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e20f5849f0d5cd459797dff04902f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitPopup: {fileID: 281522380}
 --- !u!1 &1408562494
 GameObject:
   m_ObjectHideFlags: 0
@@ -34177,6 +34179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e20f5849f0d5cd459797dff04902f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitPopup: {fileID: 1068173348}
 --- !u!1 &1692999502
 GameObject:
   m_ObjectHideFlags: 0

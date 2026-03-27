@@ -6115,7 +6115,7 @@ MonoBehaviour:
   - {fileID: 1683751379}
   - {fileID: 6767467}
   - {fileID: 2044791477}
-  speed: 10
+  speed: 20
 --- !u!81 &432801399
 AudioListener:
   m_ObjectHideFlags: 0
